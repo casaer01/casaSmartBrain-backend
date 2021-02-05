@@ -1,8 +1,10 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import bcrypt from 'bcrypt-nodejs';
-import cors from 'cors';
-import knex from 'knex';
+const express = require('express');
+// const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
+const knex = require('knex');
+
+// import register from './controllers/register.js'
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -22,7 +24,7 @@ const db = knex({
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.get('/', (req, res) => {res.send('deployment is success'); })
 app.post('/signin', (req, res) => { signin.handleSignin(req,res, db, bcrypt)})
