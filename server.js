@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 
-// import register from './controllers/register.js'
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -14,10 +13,10 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'casaer01',
-      password : 'Cps#42070459',
-      database : 'smart-brain'
+      host : process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
     }
   });
 
